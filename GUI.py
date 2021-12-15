@@ -2,6 +2,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import cv2
+import pandas as pd
 import tensorflow as tf
 from tensorflow.keras.utils import plot_model
 from tensorflow.keras.models import Model
@@ -11,14 +12,10 @@ from tkinter import filedialog
 
 import PIL.Image, PIL.ImageTk
 
-# Loading the model
+# Loading the Mpdel
 ridnet=tf.keras.models.load_model('ridnet.hd5')
 
-
-
-
-# Helper Functions
-
+#Initiating the Function
 
 def PSNR(gt, image, max_value=1):
     mse = np.mean((gt - image) ** 2)
@@ -73,7 +70,6 @@ def predict_fun(model,image_path,noise_level=30):
 def plot_patches(noised_patches,denoised_patches):
   fig, axs = plt.subplots(2,10,figsize=(20,4))
   for i in range(10):
-
     axs[0,i].imshow(noised_patches[i])
     axs[0,i].title.set_text('Noised Image')
     axs[0,i].get_xaxis().set_visible(False)
